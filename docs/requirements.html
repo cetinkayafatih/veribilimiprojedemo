@@ -120,6 +120,7 @@
                 </tbody>
             </table>
             <p><em>Note: Missing prev/rolling values are filled with 0 for first-time participants.</em></p>
+            <p><em>Note: 'total_medals' counts medal-winning athlete-events in athlete_events.csv (not official unique medal totals).</em></p>
 
             <h3 style="margin-top: 2rem;">Visualization 3: Prediction Accuracy</h3>
             <div class="viz-container">
@@ -131,19 +132,19 @@
                 <h4>Model Performance (2016 Validation)</h4>
                 <div class="metric-item">
                     <span>ALL NOCs - RMSE</span>
-                    <span class="metric-value">~9-10 medals</span>
+                    <span class="metric-value">9.49 medals</span>
                 </div>
                 <div class="metric-item">
                     <span>ALL NOCs - R²</span>
-                    <span class="metric-value">~0.89</span>
+                    <span class="metric-value">0.8927</span>
                 </div>
                 <div class="metric-item">
                     <span>TOP-20 NOCs - RMSE</span>
-                    <span class="metric-value">~20-25 medals</span>
+                    <span class="metric-value">27.04 medals</span>
                 </div>
                 <div class="metric-item">
                     <span>TOP-20 NOCs - R²</span>
-                    <span class="metric-value">~0.75-0.85</span>
+                    <span class="metric-value">0.7779</span>
                 </div>
             </div>
 
@@ -230,26 +231,26 @@
             <h3 style="margin-top: 2rem;">Visualization 4: Classification Results</h3>
             <div class="viz-container">
                 <img src="../visuals/q3_classification_results.png" alt="Classification Results">
-                <figcaption>ROC Curve and Confusion Matrix for medal prediction</figcaption>
+                <figcaption>ROC Curve and Confusion Matrix (at default threshold 0.50) for medal prediction</figcaption>
             </div>
 
             <div class="metrics-box">
                 <h4>Model Performance</h4>
                 <div class="metric-item">
-                    <span>F1 Score (Default threshold 0.5)</span>
-                    <span class="metric-value">~0.24</span>
+                    <span>F1 Score (Default threshold 0.50)</span>
+                    <span class="metric-value">0.2381</span>
                 </div>
                 <div class="metric-item">
-                    <span>F1 Score (Best threshold)</span>
-                    <span class="metric-value">~0.26-0.30</span>
+                    <span>F1 Score (Best threshold = 0.51)</span>
+                    <span class="metric-value">0.2399</span>
                 </div>
                 <div class="metric-item">
                     <span>ROC-AUC (Primary)</span>
-                    <span class="metric-value">~0.60</span>
+                    <span class="metric-value">0.5975</span>
                 </div>
                 <div class="metric-item">
                     <span>Accuracy (Secondary)</span>
-                    <span class="metric-value">~0.59</span>
+                    <span class="metric-value">0.5919</span>
                 </div>
             </div>
             <p><em>Note: F1 and ROC-AUC are primary metrics due to class imbalance (~89% non-medalists).</em></p>
@@ -268,10 +269,10 @@
                 precision (of our medal predictions) and recall (how many actual medalists we identify).
             </p>
             <p style="margin-top: 0.5rem;">
-                Threshold tuning allows us to adjust the prediction threshold from the default 0.5. By scanning thresholds
+                Threshold tuning allows us to adjust the prediction threshold from the default 0.50. By scanning thresholds
                 from 0.05 to 0.95, we find the point that maximizes F1. This often involves accepting more false positives
-                (predicting medal for non-medalists) to catch more true medalists. The best threshold typically yields a
-                modest F1 improvement of ~0.02-0.05 over the default.
+                (predicting medal for non-medalists) to catch more true medalists. The best threshold (0.51) yields F1 = 0.2399,
+                a modest improvement of +0.0018 over the default (0.50, F1 = 0.2381).
             </p>
             <p style="margin-top: 0.5rem;">
                 These results are still meaningful: they demonstrate that Olympic success depends heavily on factors beyond
