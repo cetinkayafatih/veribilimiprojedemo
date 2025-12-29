@@ -160,9 +160,9 @@
                 1960-2012 generalize to an unseen future Olympics.
             </p>
             <p style="margin-top: 0.5rem;">
-                The RMSE of approximately 9-10 medals means our predictions are typically within 9-10 medals of the actual
+                The RMSE of 9.49 medals means our predictions are typically within 9-10 medals of the actual
                 count. For context, the USA won 264 medals in 2016, so an error of 10 represents about 4% deviation for top
-                performers. The high R² (~0.89) indicates that delegation size and historical performance explain most of
+                performers. The high R² (0.8927) indicates that delegation size and historical performance explain most of
                 the variance in medal outcomes.
             </p>
             <p style="margin-top: 0.5rem;">
@@ -257,7 +257,7 @@
 
             <h3 style="margin-top: 2rem;">Interpretation</h3>
             <p>
-                The moderate ROC-AUC of ~0.60 indicates that biometric features alone are weak predictors of medal success.
+                The moderate ROC-AUC of 0.5975 indicates that biometric features alone are weak predictors of medal success.
                 An AUC of 0.5 represents random guessing, while 1.0 represents perfect classification. Our model performs
                 only marginally better than chance, suggesting that physical attributes like age, height, and weight explain
                 only a small portion of what separates medalists from non-medalists.
@@ -293,11 +293,11 @@
                 </div>
                 <div class="card">
                     <h3>Q2: Medal Prediction</h3>
-                    <p>National medal success is highly predictable based on delegation size and historical performance (R²~0.89). The Top-20 NOC focus reveals that competitive nations follow systematic patterns.</p>
+                    <p>National medal success is highly predictable based on delegation size and historical performance (R² = 0.8927). The Top-20 NOC focus reveals that competitive nations follow systematic patterns.</p>
                 </div>
                 <div class="card">
                     <h3>Q3: Classification</h3>
-                    <p>Biometrics alone are weak predictors of individual medal success (AUC~0.60), indicating that athletic achievement requires more than physical attributes. Threshold tuning provides marginal improvement.</p>
+                    <p>Biometrics alone are weak predictors of individual medal success (AUC = 0.5975), indicating that athletic achievement requires more than physical attributes. Threshold tuning provides marginal improvement (+0.0018 F1).</p>
                 </div>
             </div>
         </section>
@@ -324,7 +324,7 @@ python scripts/generate_all.py</code></pre>
     <footer>
         <p>IE 421 Data Science Term Project | Istanbul Bilgi University</p>
         <p style="margin-top: 0.5rem;">
-            <a href="https://github.com/BILGI-IE-421/ie421-2025-2026-1-termproject-data-and-the-city" target="_blank">View on GitHub</a>
+            <a href="https://github.com/cetinkayafatih/veribilimiprojedemo" target="_blank">View on GitHub</a>
         </p>
     </footer>
 </body>
