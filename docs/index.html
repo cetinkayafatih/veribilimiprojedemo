@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data and The City - IE421 Olympics Project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="requirements.html">Analysis & Results</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="olympic-rings">
+            <div class="ring ring-blue"></div>
+            <div class="ring ring-yellow"></div>
+            <div class="ring ring-black"></div>
+            <div class="ring ring-green"></div>
+            <div class="ring ring-red"></div>
+        </div>
+        <h1>Data and The City</h1>
+        <p>IE 421 Data Science Term Project - Olympics Analysis</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">Istanbul Bilgi University | Fall 2024-2025</p>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Project Overview -->
+        <section>
+            <h2>Project Overview</h2>
+            <p>This project analyzes Olympic Games data to uncover insights about gender parity, national medal performance, and athlete success factors. Using data from 1896 to 2024, we apply statistical and machine learning techniques to answer three key research questions.</p>
+        </section>
+
+        <!-- Research Questions -->
+        <section style="margin-top: 3rem;">
+            <h2>Research Questions</h2>
+            <div class="card-grid">
+                <div class="card question-card q1">
+                    <h3>Q1: Gender Parity</h3>
+                    <p><strong>Descriptive Analysis</strong></p>
+                    <p>How has the gender participation gap evolved from 1896 to 2016, and what is the discipline-level parity at Paris 2024?</p>
+                </div>
+                <div class="card question-card q2">
+                    <h3>Q2: Medal Prediction</h3>
+                    <p><strong>Multiple Linear Regression</strong></p>
+                    <p>Can we predict a country's medal count based on delegation size and historical performance?</p>
+                </div>
+                <div class="card question-card q3">
+                    <h3>Q3: Athlete Classification</h3>
+                    <p><strong>Logistic Regression</strong></p>
+                    <p>Do biometric features (age, height, weight) predict medal success in high-physicality sports?</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visualizations Preview -->
+        <section style="margin-top: 3rem;">
+            <h2>Key Visualizations</h2>
+            <div class="card-grid">
+                <div class="viz-container">
+                    <img src="../visuals/q1_gender_timeline.png" alt="Gender Participation Timeline">
+                    <figcaption>Figure 1: Evolution of Gender Parity (1896-2016)</figcaption>
+                </div>
+                <div class="viz-container">
+                    <img src="../visuals/q1_paris2024_parity.png" alt="Paris 2024 Discipline Parity">
+                    <figcaption>Figure 2: Paris 2024 Discipline-Level Gender Parity</figcaption>
+                </div>
+                <div class="viz-container">
+                    <img src="../visuals/q2_prediction_scatter.png" alt="Medal Prediction Scatter">
+                    <figcaption>Figure 3: Medal Prediction Accuracy (2016 Validation)</figcaption>
+                </div>
+                <div class="viz-container">
+                    <img src="../visuals/q3_classification_results.png" alt="Classification Results">
+                    <figcaption>Figure 4: Athlete Classification Results (ROC & Confusion Matrix)</figcaption>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 1rem;">
+                <a href="requirements.html">View detailed analysis and methodology &rarr;</a>
+            </p>
+        </section>
+
+        <!-- Team Section -->
+        <section style="margin-top: 3rem;">
+            <h2>Team Members</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="avatar">MF</div>
+                    <h4>Mehmet Fatih Cetinkaya</h4>
+                    <p class="student-id">121205031</p>
+                </div>
+                <div class="team-member">
+                    <div class="avatar">MT</div>
+                    <h4>Mehmet Tolga Cakan</h4>
+                    <p class="student-id">121203029</p>
+                </div>
+                <div class="team-member">
+                    <div class="avatar">DI</div>
+                    <h4>Demet Irem Yilmaz</h4>
+                    <p class="student-id">121203095</p>
+                </div>
+                <div class="team-member">
+                    <div class="avatar">SK</div>
+                    <h4>Sila Kahya</h4>
+                    <p class="student-id">123203018</p>
+                </div>
+                <div class="team-member">
+                    <div class="avatar">EB</div>
+                    <h4>Eylul Balci</h4>
+                    <p class="student-id">122203020</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Sources -->
+        <section style="margin-top: 3rem;">
+            <h2>Data Sources</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Historical Data (1896-2016)</h3>
+                    <p>120 Years of Olympic History: Athletes and Results</p>
+                    <p><small>271,116 athlete-event records</small></p>
+                </div>
+                <div class="card">
+                    <h3>Paris 2024 Data</h3>
+                    <p>Paris 2024 Olympic Summer Games Athletes</p>
+                    <p><small>11,113 athlete registrations</small></p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>IE 421 Data Science Term Project | Istanbul Bilgi University</p>
+        <p style="margin-top: 0.5rem;">
+            <a href="https://github.com/BILGI-IE-421/ie421-2025-2026-1-termproject-data-and-the-city" target="_blank">View on GitHub</a>
+        </p>
+    </footer>
+</body>
+</html>

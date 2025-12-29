@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis & Results - Data and The City</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="requirements.html">Analysis & Results</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <section class="hero" style="padding: 2rem;">
+        <h1>Analysis & Results</h1>
+        <p>Detailed methodology and findings for each research question</p>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <!-- Q1: Gender Parity -->
+        <section>
+            <h2>Q1: Gender Parity Analysis</h2>
+
+            <div class="card">
+                <h3>Research Question</h3>
+                <p>To what extent has the gender participation gap converged towards parity from 1896 to 2016, and what is the deviation from a perfect 50/50 split in the sport disciplines of Paris 2024?</p>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Methodology</h3>
+            <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                <li><strong>Data:</strong> Historical athlete_events.csv (1896-2016) + Paris 2024 athletes.csv</li>
+                <li><strong>Filter:</strong> Summer Olympics only</li>
+                <li><strong>Metric:</strong> Female participation ratio per Olympic year and per discipline</li>
+                <li><strong>Analysis Type:</strong> Descriptive statistics and trend analysis</li>
+            </ul>
+
+            <h3>Visualization 1: Historical Gender Trend</h3>
+            <div class="viz-container">
+                <img src="../visuals/q1_gender_timeline.png" alt="Gender Timeline">
+                <figcaption>Evolution of female participation in Summer Olympics (1896-2016)</figcaption>
+            </div>
+
+            <h3>Visualization 2: Paris 2024 Discipline Parity</h3>
+            <div class="viz-container">
+                <img src="../visuals/q1_paris2024_parity.png" alt="Paris 2024 Parity">
+                <figcaption>Gender parity by discipline at Paris 2024 Olympics</figcaption>
+            </div>
+
+            <div class="metrics-box">
+                <h4>Key Findings</h4>
+                <div class="metric-item">
+                    <span>Female ratio in 1900 (first women)</span>
+                    <span class="metric-value">~2%</span>
+                </div>
+                <div class="metric-item">
+                    <span>Female ratio in 2016</span>
+                    <span class="metric-value">~45%</span>
+                </div>
+                <div class="metric-item">
+                    <span>Paris 2024 overall female ratio</span>
+                    <span class="metric-value">~49%</span>
+                </div>
+                <div class="metric-item">
+                    <span>Trend</span>
+                    <span class="metric-value">Approaching 50% parity</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Q2: Medal Prediction -->
+        <section style="margin-top: 4rem;">
+            <h2>Q2: Medal Prediction (Regression)</h2>
+
+            <div class="card">
+                <h3>Research Question</h3>
+                <p>How accurately can a Multiple Linear Regression model predict total medal counts using delegation sizes and historical performance metrics?</p>
+            </div>
+
+            <div class="card" style="margin-top: 1rem; border-left: 4px solid #009F3D;">
+                <h3>Scope</h3>
+                <p>We focus evaluation on the <strong>Top-20 NOCs by total medals in 2016</strong>, and report metrics both overall and for the Top-20. This targeted focus allows us to evaluate prediction accuracy where it matters most: among competitive nations with significant medal counts.</p>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Methodology</h3>
+            <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                <li><strong>Model:</strong> Multiple Linear Regression</li>
+                <li><strong>Training Period:</strong> 1960-2012</li>
+                <li><strong>Validation:</strong> 2016 Rio Olympics</li>
+                <li><strong>Aggregation:</strong> Country-year level (NOC, Year)</li>
+            </ul>
+
+            <h3>Features</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>delegation_size</code></td>
+                        <td>Number of unique athlete IDs per (NOC, Year)</td>
+                    </tr>
+                    <tr>
+                        <td><code>prev_medals</code></td>
+                        <td>Medal count from previous Olympics (lag-1)</td>
+                    </tr>
+                    <tr>
+                        <td><code>rolling_avg_medals</code></td>
+                        <td>Rolling mean of last 2 Olympics medal counts</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><em>Note: Missing prev/rolling values are filled with 0 for first-time participants.</em></p>
+
+            <h3 style="margin-top: 2rem;">Visualization 3: Prediction Accuracy</h3>
+            <div class="viz-container">
+                <img src="../visuals/q2_prediction_scatter.png" alt="Prediction Scatter">
+                <figcaption>Actual vs. Predicted medal counts for 2016 Olympics (Top-20 NOCs highlighted)</figcaption>
+            </div>
+
+            <div class="metrics-box">
+                <h4>Model Performance (2016 Validation)</h4>
+                <div class="metric-item">
+                    <span>ALL NOCs - RMSE</span>
+                    <span class="metric-value">~9-10 medals</span>
+                </div>
+                <div class="metric-item">
+                    <span>ALL NOCs - R²</span>
+                    <span class="metric-value">~0.89</span>
+                </div>
+                <div class="metric-item">
+                    <span>TOP-20 NOCs - RMSE</span>
+                    <span class="metric-value">~20-25 medals</span>
+                </div>
+                <div class="metric-item">
+                    <span>TOP-20 NOCs - R²</span>
+                    <span class="metric-value">~0.75-0.85</span>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Interpretation</h3>
+            <p>
+                Our model uses three features to predict national medal counts: delegation size (number of athletes sent),
+                the previous Olympics' medal count (lag-1), and a rolling average of the last two Olympics. These features
+                capture both current investment in Olympic programs and historical performance momentum.
+            </p>
+            <p style="margin-top: 0.5rem;">
+                We use the 2016 Rio Olympics as our validation set because the Paris 2024 dataset only contains athlete
+                registration data, not medal results. This temporal holdout approach tests whether patterns learned from
+                1960-2012 generalize to an unseen future Olympics.
+            </p>
+            <p style="margin-top: 0.5rem;">
+                The RMSE of approximately 9-10 medals means our predictions are typically within 9-10 medals of the actual
+                count. For context, the USA won 264 medals in 2016, so an error of 10 represents about 4% deviation for top
+                performers. The high R² (~0.89) indicates that delegation size and historical performance explain most of
+                the variance in medal outcomes.
+            </p>
+            <p style="margin-top: 0.5rem;">
+                However, we must interpret this high R² carefully: it comes from a single validation year (2016). The model
+                shows that Olympic success is largely systematic rather than random, but geopolitical events, host-country
+                advantages (not modeled), and emerging sports programs can cause deviations. The Top-20 analysis shows that
+                among competitive nations, prediction errors tend to be larger in absolute terms but the model still captures
+                the relative ordering well.
+            </p>
+        </section>
+
+        <!-- Q3: Classification -->
+        <section style="margin-top: 4rem;">
+            <h2>Q3: Athlete Classification</h2>
+
+            <div class="card">
+                <h3>Research Question</h3>
+                <p>To what extent do biometric features (Age, Height, Weight) serve as predictive indicators for medal success in high-physicality sports?</p>
+            </div>
+
+            <div class="card" style="margin-top: 1rem; border-left: 4px solid #DF0024;">
+                <h3>Scope</h3>
+                <p>We restrict analysis to <strong>post-2000 Summer Olympics</strong>, athletes with <strong>complete biometrics</strong>,
+                and <strong>selected high-physicality sports only</strong> (Athletics, Swimming, Wrestling, Boxing, Weightlifting).
+                Because the target is imbalanced (~89% non-medalists), we prioritize <strong>F1 and ROC-AUC over accuracy</strong>.</p>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Methodology</h3>
+            <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                <li><strong>Model:</strong> Logistic Regression (class_weight='balanced')</li>
+                <li><strong>Data Filter:</strong> Post-2000 Summer Olympics (better biometric completeness)</li>
+                <li><strong>Sports:</strong> Athletics, Swimming, Wrestling, Boxing, Weightlifting</li>
+                <li><strong>Target:</strong> Binary - Medal Won (1) vs. No Medal (0)</li>
+                <li><strong>Split:</strong> 80% train, 20% test (stratified)</li>
+                <li><strong>Threshold Tuning:</strong> Scan thresholds 0.05-0.95 to find optimal F1</li>
+            </ul>
+
+            <h3>Features</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Age</td>
+                        <td>Numeric (years)</td>
+                    </tr>
+                    <tr>
+                        <td>Height</td>
+                        <td>Numeric (cm)</td>
+                    </tr>
+                    <tr>
+                        <td>Weight</td>
+                        <td>Numeric (kg)</td>
+                    </tr>
+                    <tr>
+                        <td>Sex</td>
+                        <td>Binary encoded (M=1, F=0)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 2rem;">Visualization 4: Classification Results</h3>
+            <div class="viz-container">
+                <img src="../visuals/q3_classification_results.png" alt="Classification Results">
+                <figcaption>ROC Curve and Confusion Matrix for medal prediction</figcaption>
+            </div>
+
+            <div class="metrics-box">
+                <h4>Model Performance</h4>
+                <div class="metric-item">
+                    <span>F1 Score (Default threshold 0.5)</span>
+                    <span class="metric-value">~0.24</span>
+                </div>
+                <div class="metric-item">
+                    <span>F1 Score (Best threshold)</span>
+                    <span class="metric-value">~0.26-0.30</span>
+                </div>
+                <div class="metric-item">
+                    <span>ROC-AUC (Primary)</span>
+                    <span class="metric-value">~0.60</span>
+                </div>
+                <div class="metric-item">
+                    <span>Accuracy (Secondary)</span>
+                    <span class="metric-value">~0.59</span>
+                </div>
+            </div>
+            <p><em>Note: F1 and ROC-AUC are primary metrics due to class imbalance (~89% non-medalists).</em></p>
+
+            <h3 style="margin-top: 2rem;">Interpretation</h3>
+            <p>
+                The moderate ROC-AUC of ~0.60 indicates that biometric features alone are weak predictors of medal success.
+                An AUC of 0.5 represents random guessing, while 1.0 represents perfect classification. Our model performs
+                only marginally better than chance, suggesting that physical attributes like age, height, and weight explain
+                only a small portion of what separates medalists from non-medalists.
+            </p>
+            <p style="margin-top: 0.5rem;">
+                The class imbalance issue is significant: only ~11% of athletes win medals. This means accuracy alone is
+                misleading—a model that predicts "no medal" for everyone would achieve ~89% accuracy but be useless.
+                We address this by using balanced class weights in training and focusing on F1 score, which balances
+                precision (of our medal predictions) and recall (how many actual medalists we identify).
+            </p>
+            <p style="margin-top: 0.5rem;">
+                Threshold tuning allows us to adjust the prediction threshold from the default 0.5. By scanning thresholds
+                from 0.05 to 0.95, we find the point that maximizes F1. This often involves accepting more false positives
+                (predicting medal for non-medalists) to catch more true medalists. The best threshold typically yields a
+                modest F1 improvement of ~0.02-0.05 over the default.
+            </p>
+            <p style="margin-top: 0.5rem;">
+                These results are still meaningful: they demonstrate that Olympic success depends heavily on factors beyond
+                basic physical measurements. Training quality, technique, mental preparation, competition experience, coaching,
+                and even event-specific skills play crucial roles that cannot be captured by age, height, weight, and sex alone.
+                This insight suggests that sports programs should focus on holistic athlete development rather than physical
+                screening based on biometrics.
+            </p>
+        </section>
+
+        <!-- Conclusion -->
+        <section style="margin-top: 4rem;">
+            <h2>Conclusions</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Q1: Gender Parity</h3>
+                    <p>The Olympics have transformed from a male-dominated event (0% female in 1896) to near-parity by Paris 2024. This represents one of the most significant shifts in sports history.</p>
+                </div>
+                <div class="card">
+                    <h3>Q2: Medal Prediction</h3>
+                    <p>National medal success is highly predictable based on delegation size and historical performance (R²~0.89). The Top-20 NOC focus reveals that competitive nations follow systematic patterns.</p>
+                </div>
+                <div class="card">
+                    <h3>Q3: Classification</h3>
+                    <p>Biometrics alone are weak predictors of individual medal success (AUC~0.60), indicating that athletic achievement requires more than physical attributes. Threshold tuning provides marginal improvement.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Details -->
+        <section style="margin-top: 4rem;">
+            <h2>Technical Details</h2>
+            <h3>How to Run</h3>
+            <pre><code>pip install -r requirements.txt
+python scripts/generate_all.py</code></pre>
+
+            <h3 style="margin-top: 2rem;">Dependencies</h3>
+            <ul style="margin-left: 2rem;">
+                <li>pandas >= 1.5.0</li>
+                <li>numpy >= 1.23.0</li>
+                <li>matplotlib >= 3.6.0</li>
+                <li>seaborn >= 0.12.0</li>
+                <li>scikit-learn >= 1.1.0</li>
+            </ul>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>IE 421 Data Science Term Project | Istanbul Bilgi University</p>
+        <p style="margin-top: 0.5rem;">
+            <a href="https://github.com/BILGI-IE-421/ie421-2025-2026-1-termproject-data-and-the-city" target="_blank">View on GitHub</a>
+        </p>
+    </footer>
+</body>
+</html>
